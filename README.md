@@ -3,7 +3,7 @@
 
 This tool checks whether all necessary annotations are present in ReVanced patches.
 
-If a class is annotated with `@Patch` but not with all of `Name`, `Description` and `Version`, there will be a compile-time error.
+If a class is annotated with `@Patch` but not with all of `@Name`, `@Description`, `@Version` and `@Compatibility`, there will be a compile-time error.
 
 ### How to use
 - clone this repository

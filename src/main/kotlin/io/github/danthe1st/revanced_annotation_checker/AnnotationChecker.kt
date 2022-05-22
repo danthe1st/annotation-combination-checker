@@ -12,7 +12,8 @@ import com.google.devtools.ksp.symbol.KSVisitorVoid
 val requiredAnnotations = listOf(
     "app.revanced.patcher.annotation.Name",
     "app.revanced.patcher.annotation.Description",
-    "app.revanced.patcher.annotation.Version"
+    "app.revanced.patcher.annotation.Version",
+    "app.revanced.patcher.annotation.Compatibility"
 )
 
 class AnnotationChecker(val env: SymbolProcessorEnvironment) : SymbolProcessor {
