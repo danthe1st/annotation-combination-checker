@@ -8,34 +8,31 @@ import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 
-
-val requiredAnnotations = listOf(
-    "app.revanced.patcher.annotation.Name",
-    "app.revanced.patcher.annotation.Description",
-    "app.revanced.patcher.annotation.Version",
-    "app.revanced.patcher.annotation.Compatibility"
-)
-
 class AnnotationChecker(val env: SymbolProcessorEnvironment) : SymbolProcessor {
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        val visitor = CheckerVisitor(env)
-        resolver.getSymbolsWithAnnotation("app.revanced.patcher.patch.annotations.Patch")
-            .forEach { it.accept(visitor, Unit) }
-
+        if(env.options.isEmpty()){
+            env.logger.error("no annotations to check present")
+        }
+        for ((k,v) in env.options) {
+            val visitor = CheckerVisitor(env,k,v.split(";"))
+            resolver.getSymbolsWithAnnotation(k)
+                .forEach { it.accept(visitor, Unit) }
+        }
         return emptyList()
     }
 }
 
-class CheckerVisitor(val env: SymbolProcessorEnvironment) : KSVisitorVoid() {
+class CheckerVisitor(val env: SymbolProcessorEnvironment,val requiringAnnotation: String, val requiredAnnotations: List<String>) : KSVisitorVoid() {
     override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
         val traversed = mutableSetOf<KSAnnotation>()
         classDeclaration.annotations.forEach { traverseAnnotations(it, traversed) }
         val traversedNames = traversed.map { it.annotationType.resolve().declaration.qualifiedName?.asString() }.toSet()
         val annotationsLeft = requiredAnnotations.toMutableSet()
         annotationsLeft.removeAll(traversedNames)
+
         if (annotationsLeft.isNotEmpty()) {
             env.logger.error(
-                "Class is annotated with @Patch but the following annotations are missing: $annotationsLeft",
+                "Class is annotated with $requiringAnnotation but the following annotations are missing: $annotationsLeft, traversed: $traversed",
                 classDeclaration
             )
         }
@@ -48,7 +45,7 @@ class CheckerVisitor(val env: SymbolProcessorEnvironment) : KSVisitorVoid() {
     ) {
         if (!traversed.contains(toTraverse)) {
             traversed.add(toTraverse)
-            toTraverse.annotationType.annotations.forEach { traverseAnnotations(it, traversed) }
+            toTraverse.annotationType.resolve().declaration.annotations.forEach { traverseAnnotations(it, traversed) }
         }
     }
 }

@@ -3,7 +3,7 @@
 
 This tool checks whether all necessary annotations are present in ReVanced patches.
 
-If a class is annotated with `@Patch` but not with all of `@Name`, `@Description`, `@Version` and `@Compatibility`, there will be a compile-time error.
+This tool raises a compile-time error for every class annotated with a specific annotation that misses another annotation.
 
 ### How to use
 - clone this repository
@@ -17,3 +17,16 @@ If a class is annotated with `@Patch` but not with all of `@Name`, `@Description
   ```kotlin
   ksp("io.github.danthe1st:revanced-annotation-checking-tool:1.0-SNAPSHOT")
   ```
+- add the following to your `build.gradle.kts`:
+  ```kotlin
+  tasks{
+    ksp{
+        arg("app.revanced.patcher.patch.annotations.Patch",
+                "app.revanced.patcher.annotation.Name;" +
+                "app.revanced.patcher.annotation.Description;" +
+                "app.revanced.patcher.annotation.Version;" +
+                "app.revanced.patcher.annotation.Compatibility" )
+    }
+  }
+  ```
+  This configures `revanced-annotation-checking-tool` to raise an error for every class annotated with `@Patch` but not with at least one of `@Name`, `@Description`, `@Version` or `@Compatibility`.
