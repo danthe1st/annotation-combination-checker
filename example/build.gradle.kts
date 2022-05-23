@@ -8,13 +8,19 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://jitpack.io")
+    }
     mavenLocal()
 }
 
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
-    ksp("io.github.danthe1st:annotation-combination-checker:1.0-SNAPSHOT")
+    //local maven repository
+    //ksp("io.github.danthe1st:annotation-combination-checker:1.0-SNAPSHOT")
+    //jitpack
+    ksp("io.github.danthe1st:annotation-combination-checker:-SNAPSHOT")
 }
 
 tasks{
