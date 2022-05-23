@@ -21,7 +21,7 @@ is also annotated with another annotation.
         arg("com.yourpackage.RequiringAnnotation",
                 "com.yourpackage.RequiredAnnotationA;" +
                 "com.yourpackage.RequiredAnnotationB;" +
-                "com.yourpackage.RequiredAnnotationC;")
+                "com.yourpackage.RequiredAnnotationC")
     }
   }
   ```
