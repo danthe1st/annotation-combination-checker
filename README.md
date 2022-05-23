@@ -17,12 +17,12 @@ is also annotated with another annotation.
 - add the following to your `build.gradle.kts`:
   ```kotlin
   tasks{
-    ksp{
-        arg("com.yourpackage.RequiringAnnotation",
-                "com.yourpackage.RequiredAnnotationA;" +
-                "com.yourpackage.RequiredAnnotationB;" +
-                "com.yourpackage.RequiredAnnotationC")
-    }
+      ksp{
+          arg("com.yourpackage.RequiringAnnotation",
+                  "com.yourpackage.RequiredAnnotationA;" +
+                  "com.yourpackage.RequiredAnnotationB;" +
+                  "com.yourpackage.RequiredAnnotationC")
+      }
   }
   ```
   This configures Annotation combination checker to raise an error for every class annotated with `@Patch` but not with at least one of `@Name`, `@Description`, `@Version` or `@Compatibility`.
