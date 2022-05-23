@@ -15,8 +15,9 @@ class AnnotationChecker(val env: SymbolProcessorEnvironment) : SymbolProcessor {
         }
         for ((k,v) in env.options) {
             val visitor = CheckerVisitor(env,k,v.split(";"))
-            resolver.getSymbolsWithAnnotation(k)
-                .forEach { it.accept(visitor, Unit) }
+            for (it in resolver.getSymbolsWithAnnotation(k)) {
+                it.accept(visitor, Unit)
+            }
         }
         return emptyList()
     }
@@ -32,7 +33,7 @@ class CheckerVisitor(val env: SymbolProcessorEnvironment,val requiringAnnotation
 
         if (annotationsLeft.isNotEmpty()) {
             env.logger.error(
-                "Class is annotated with $requiringAnnotation but the following annotations are missing: $annotationsLeft, traversed: $traversed",
+                "Class is annotated with $requiringAnnotation but the following annotations are missing: $annotationsLeft",
                 classDeclaration
             )
         }

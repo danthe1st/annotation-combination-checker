@@ -1,3 +1,2 @@
-
-rootProject.name = "revanced-annotation-checking-tool"
-
+rootProject.name = "annotation-combination-checker"
+include("annotation-checker-example")
