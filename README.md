@@ -5,7 +5,7 @@
 This tool checks whether everything annotated with a specific Kotlin annotation
 is also annotated with another annotation.
 
-![annotation-combination-checker](https://user-images.githubusercontent.com/34687786/169795083-12725d41-fa1b-4d0a-ab33-76642ef36ebc.png)
+![annotation-combination-checker](https://user-images.githubusercontent.com/34687786/169851818-3eb33919-acc5-4647-9acc-6f72eb864b1f.png)
 
 ### How to use
 - Add the following to the `repositories` section of your `build.gradle.kts`:
