@@ -20,7 +20,7 @@ dependencies {
     //local maven repository
     //ksp("io.github.danthe1st:annotation-combination-checker:1.0-SNAPSHOT")
     //jitpack
-    ksp("io.github.danthe1st:annotation-combination-checker:-SNAPSHOT")
+    ksp("com.github.danthe1st:annotation-combination-checker:-SNAPSHOT")
 }
 
 tasks{

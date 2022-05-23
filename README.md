@@ -14,6 +14,7 @@ is also annotated with another annotation.
       url = uri("https://jitpack.io")
   }
   ```
+  Alternatively, you could use `mavenLocal()` and build Annotation combination checker yourself using `./gradlew build`
 - add the following to the `plugins` section of your `build.gradle.kts`:
   ```kotlin
   id("com.google.devtools.ksp") version "1.7.0-RC-1.0.5"
@@ -22,6 +23,7 @@ is also annotated with another annotation.
   ```kotlin
   ksp("io.github.danthe1st:annotation-combination-checker:1.0-SNAPSHOT")
   ```
+  If JitPack is used, the group id is `com.github.danthe1st` instead of `io.github.danthe1st`. 
 - add the following to your `build.gradle.kts`:
   ```kotlin
   tasks{
