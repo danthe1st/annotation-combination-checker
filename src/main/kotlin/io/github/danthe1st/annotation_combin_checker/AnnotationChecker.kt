@@ -15,8 +15,8 @@ class AnnotationChecker(val env: SymbolProcessorEnvironment) : SymbolProcessor {
         }
         for ((k,v) in env.options) {
             val visitor = CheckerVisitor(env,k,v.split(";"))
-            for (it in resolver.getSymbolsWithAnnotation(k)) {
-                it.accept(visitor, Unit)
+            for (symbol in resolver.getSymbolsWithAnnotation(k)) {
+                symbol.accept(visitor, Unit)
             }
         }
         return emptyList()

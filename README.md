@@ -1,13 +1,19 @@
 # Annotation combination checker
 
+[![Release](https://jitpack.io/v/danthe1st/annotation-combination-checker.svg)](https://jitpack.io/#danthe1st/annotation-combination-checker)
+
 This tool checks whether everything annotated with a specific Kotlin annotation
 is also annotated with another annotation.
 
 ![annotation-combination-checker](https://user-images.githubusercontent.com/34687786/169795083-12725d41-fa1b-4d0a-ab33-76642ef36ebc.png)
 
 ### How to use
-- clone this repository
-- run `gradlew publish` inside the cloned repository
+- Add the following to the `repositories` section of your `build.gradle.kts`:
+  ```kotlin
+  maven {
+      url = uri("https://jitpack.io")
+  }
+  ```
 - add the following to the `plugins` section of your `build.gradle.kts`:
   ```kotlin
   id("com.google.devtools.ksp") version "1.7.0-RC-1.0.5"
@@ -28,3 +34,14 @@ is also annotated with another annotation.
   }
   ```
   This configures Annotation combination checker to raise an error for every class annotated with `@Patch` but not with at least one of `@Name`, `@Description`, `@Version` or `@Compatibility`.
+
+### Limitiations
+- Annotated properties, fields and functions are not checked
+- This project is (not yet) available on Maven Central.
+However, it is possible to get preview builds [on Jitpack](https://jitpack.io/#danthe1st/annotation-combination-checker)
+by adding the following to the `build.gradle.kts`:
+  ```kotlin
+  maven {
+      url = uri("https://jitpack.io")
+  }
+  ```
