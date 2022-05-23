@@ -1,4 +1,4 @@
-package io.github.danthe1st.revanced_annotation_checker
+package io.github.danthe1st.annotation_combin_checker
 
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
