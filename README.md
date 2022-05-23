@@ -35,7 +35,9 @@ is also annotated with another annotation.
       }
   }
   ```
-  This configures Annotation combination checker to raise an error for every class annotated with `@Patch` but not with at least one of `@Name`, `@Description`, `@Version` or `@Compatibility`.
+  This configures Annotation combination checker to raise an error for every class
+annotated with `@RequiringAnnotation` but missing at least one of 
+`@RequiredAnnotationA`, `@RequiredAnnotationB`, or `@RequiredAnnotationC`.
 
 ### Limitiations
 - Annotated properties, fields and functions are not checked
