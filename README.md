@@ -3,6 +3,8 @@
 This tool checks whether everything annotated with a specific Kotlin annotation
 is also annotated with another annotation.
 
+![annotation-combination-checker](https://user-images.githubusercontent.com/34687786/169795083-12725d41-fa1b-4d0a-ab33-76642ef36ebc.png)
+
 ### How to use
 - clone this repository
 - run `gradlew publish` inside the cloned repository
